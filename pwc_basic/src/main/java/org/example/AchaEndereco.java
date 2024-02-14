@@ -20,11 +20,11 @@ public class AchaEndereco {
             String[] spl = end.split("([,])");
             Arrays.asList(spl).forEach(
                     rest -> {
-                        if (rest.matches("([0-9]+[A-Za-z])|([0-9]+[ ]+[A-Za-z])|([0-9])"))
+                        if (rest.matches("([0-9]+[A-Za-z])|([0-9]+[ ]+[A-Za-z])|([0-9]*)"))
                             ret.setNumero(rest);
 
                         if (rest.matches("([a-zA-Z \u0080-\u9fff]*)"))
-                            ret.setRua(StringUtils.join());
+                            ret.setRua((ret.getRua() + " " +rest).trim());
                     });
         } else if (end.contains("No")) {
 
@@ -32,11 +32,11 @@ public class AchaEndereco {
             String[] spl = end.split("([ ])");
             Arrays.asList(spl).forEach(
                     rest -> {
-                        if (rest.matches("([0-9]+[A-Za-z])|([0-9]+[ ]+[A-Za-z])|([0-9])"))
+                        if (rest.matches("([0-9]+[A-Za-z])|([0-9]+[ ]+[A-Za-z])|([0-9]*)"))
                             ret.setNumero(rest);
 
                         if (rest.matches("([a-zA-Z \u0080-\u9fff]*)"))
-                            ret.setRua(ret.getRua() rest);
+                            ret.setRua((ret.getRua() + " " + rest).trim());
                     });
         }
 
