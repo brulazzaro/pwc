@@ -28,7 +28,7 @@ public class AchaEndereco {
                     rest -> {
                         if (rest.matches("([0-9]+[A-Za-z])|([0-9]+[ ]+[A-Za-z])|([0-9]*)") ||
                                 rest.matches("([0-9]+[A-Za-z])|([0-9]+[ ]+[A-Za-z])|([ ][0-9]*)"))
-                            ret.setNumero(rest);
+                            ret.setNumero(rest.trim());
 
                         if (rest.matches("([a-zA-Z \u0080-\u9fff]*)"))
                             ret.setRua((ret.getRua() + " " +rest).trim());
@@ -42,9 +42,6 @@ public class AchaEndereco {
             }
 
         } else if (patternForNumberAndCharacter.matcher(end).find()) {
-            System.out.println("deu bom");
-
-
 
         } else {
             String[] spl = end.split("([ ])");
