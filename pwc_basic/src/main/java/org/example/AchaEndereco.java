@@ -20,6 +20,7 @@ public class AchaEndereco {
         final Retorno ret = new Retorno();
 
         final Pattern patternForNumberAndCharacter = Pattern.compile("([0-9]+[ ]+[a-zA-Z])");
+        final Pattern patternUSaddress = Pattern.compile("^(\\w+\\s\\d+\\w)\\s+(.*?)$");
 
         if (end.contains(",")) {
             String[] spl = end.split("([,])");
@@ -31,9 +32,15 @@ public class AchaEndereco {
                         if (rest.matches("([a-zA-Z \u0080-\u9fff]*)"))
                             ret.setRua((ret.getRua() + " " +rest).trim());
                     });
-        } else if (end.contains("No")) {
+        } else if (patternUSaddress.matcher(end).matches()) {
+            Matcher matcher = patternUSaddress.matcher(end);
 
-        } else if (patternForNumberAndCharacter.matcher(end).find()) {
+            if (matcher.matches()){
+                ret.setRua(matcher.group(1));
+                ret.setNumero(matcher.group(2));
+            }
+
+        } else if (patternForNumberAndCharacter.matcher(end).matches()) {
             System.out.println("deu bom");
         } else {
             String[] spl = end.split("([ ])");
