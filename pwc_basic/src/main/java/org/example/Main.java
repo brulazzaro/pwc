@@ -1,8 +1,12 @@
 package org.example;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +16,10 @@ public class Main {
                 "Calle 44 No 1991"};
 
         Arrays.asList(enderecos).forEach(e -> {
+            StringBuffer reverse = (new StringBuffer(e)).reverse();
+
+            System.out.println(e);
+
             System.out.println(AchaEndereco.resolveEndereco(e));
         });
     }
