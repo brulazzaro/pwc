@@ -16,10 +16,7 @@ public class Main {
                 "Calle 44 No 1991"};
 
         Arrays.asList(enderecos).forEach(e -> {
-            StringBuffer reverse = (new StringBuffer(e)).reverse();
-
             System.out.println(e);
-
             System.out.println(AchaEndereco.resolveEndereco(e));
         });
     }
